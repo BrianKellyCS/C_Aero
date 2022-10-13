@@ -105,7 +105,7 @@ calculate.addEventListener("click", function(){
             for(let m_idx = M;m_idx<=m_end;m_idx+=m_step)
             {
                 p_p0 = ((1 +(g_idx - 1)/2 * m_idx**2)**-1)**(g_idx/(g_idx-1));
-                rho_rho0 = ((1 +(g_idx - 1)/2 * M**2)**-1)**(1/(g_idx-1));
+                rho_rho0 = ((1 +(g_idx - 1)/2 * m_idx**2)**-1)**(1/(g_idx-1));
                 t_t0 = (1 +(g_idx - 1)/2 * m_idx**2)**-1;
                 p_pt = ((1 +(g_idx - 1)/2 * m_idx**2)**-1)**(g_idx/(g_idx-1)) * (g_idx/2 + .5)**(g_idx/(g_idx -1));
                 rho_rhot = ((1 +(g_idx - 1)/2 * m_idx**2)**-1)**(1/(g_idx-1)) * (g_idx /2 + .5)**(1 / (g_idx - 1));
