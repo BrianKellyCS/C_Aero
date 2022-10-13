@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compressible Aerodynamics Calculator</title>
+    <link href="styles.css" rel="stylesheet">
+    <script src="script.js" defer></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+  </head>
+
+<body>
+    <div id="form">
+    <h1>Compressible Aerodynamics Calculator</h1>
+      <label class="input-field">
+        <input id="gamma_start" placeholder="&nbsp;"/>
+        <span class="placeholder">Enter Initial Gamma Value</span>
+      </label>
+      <label class="input-field">
+        <input id="gamma_end" placeholder="&nbsp;"/>
+        <span class="placeholder">Enter End Gamma Value</span>
+      </label>
+      <label class="input-field">
+        <input id="gamma_step" placeholder="&nbsp;"/>
+        <span class="placeholder">Enter Gamma Step</span>
+      </label>
+      <label class="input-field">
+        <input id="m_start" placeholder="&nbsp;"/>
+        <span class="placeholder">Enter Initial Mach Value</span>
+      </label>
+      <label class="input-field">
+        <input id="m_end" placeholder="&nbsp;"/>
+        <span class="placeholder">Enter End Mach Value</span>
+      </label>
+      <label class="input-field">
+        <input id="m_step" placeholder="&nbsp;"/>
+        <span class="placeholder">Enter Mach Step</span>
+      </label>
+
+    </div>
+    <br>
+
+
+    <div id="form_buttons">
+        <button id="calculate">Calculate</button>
+        <button id="clear_form">Clear Input</button>
+        <br>
+        <br>
+    </div>
+    <div id="data">
+
+        <div id="selector">
+            Select Data Set:
+            <br>
+            <select id="arr"></select>
+            <button id="show_table">Display Data</button>
+            <button id="save_table">Save Table</button>
+            <button id="clear_data">Delete All Data</button>
+
+    </div>
+
+      </div>
+      
+      <div id="table_area"></div>
+      
+
+
+
+
+ 
+</body>
+</html>
