@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:500');
 
 * {
-    /* Change your font family */
+
     font-family: "Montserrat", sans-serif;
     
 
@@ -57,9 +57,9 @@ select{
     margin-bottom: 5px;
     display: inline-block;
     --field-padding: 12px;
-}
+  }
   
-.input-field input {
+  .input-field input {
     border: none;
     -webkit-appearance: none;
     -ms-appearance: none;
@@ -71,11 +71,11 @@ select{
     width: 250px;
     outline: none;
     font-size: 14px;
-}
+  }
   
-.input-field .placeholder {
-  position: absolute;
-  left: var(--field-padding);
+  .input-field .placeholder {
+    position: absolute;
+    left: var(--field-padding);
     width: calc(100% - (var(--field-padding) * 2));
     overflow: hidden;
     white-space: nowrap;
@@ -88,17 +88,17 @@ select{
       top 0.3s ease,
       color 0.3s ease,
       font-size 0.3s ease;
-}
+  }
   
-.input-field input.dirty + .placeholder,
-.input-field input:focus + .placeholder,
-.input-field input:not(:placeholder-shown) + .placeholder {
-  top: -10px;
-  font-size: 10px;
-  color: #222;
-}
+  .input-field input.dirty + .placeholder,
+  .input-field input:focus + .placeholder,
+  .input-field input:not(:placeholder-shown) + .placeholder {
+    top: -10px;
+    font-size: 10px;
+    color: #222;
+  }
   
-.input-field .error-message {
+  .input-field .error-message {
     width: 100%;
     display: flex;
     align-items: center;
@@ -107,17 +107,38 @@ select{
     background: #d30909;
     color: #fff;
     height: 24px;
-}
+  }
   
-.input-field .error-message:empty {
+  .input-field .error-message:empty {
     opacity: 0;
-}
+  }
 
-
-
+/* TWO */
+.input-field.two input {
+    border-radius: 0;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background:
+      linear-gradient(90deg, rgb(206, 219, 226), rgb(13, 111, 240)) center bottom/0 0.15em no-repeat,
+      linear-gradient(90deg, #ccc, #ccc) left bottom/100% 0.15em no-repeat,
+      linear-gradient(90deg, #fafafa, #fafafa) left bottom/100% no-repeat;
+    transition: background-size 0.1s ease;
+  }
   
-/*TABLE*/
-#display {
+  #chartContainer{
+    border-collapse: collapse;
+    margin: 25px 15px;
+    font-size: 0.9em;
+    position: relative;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    height: 500px;
+    
+    width: 95%;
+    max-width:1300px;
+  }
+
+  #display {
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 0.9em;
@@ -126,44 +147,42 @@ select{
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   
-}
+  }
   
   
   
-#display caption{
+  #display caption{
       background-color: #009879;
       color: #f5f5f5;
       text-align: left;
       font-weight: bold;
-}
+  }
   
   
-#display thead tr {
+  #display thead tr {
       background-color: #009879;
   
       color: #ffffff;
       text-align: left;
       font-weight: bold;
-}
+  }
   
-#display th,
-#display td {
+  #display th,
+  #display td {
       padding: 12px 15px;
-}
   
-#display tbody tr {
+  }
+  
+  #display tbody tr {
       border-bottom: 1px solid #037760;
 
   
-}
+  }
   
-#display tbody tr:last-of-type {
-   border-bottom: 2px solid #009879;
-}
-
-#display tbody tr:hover{
-  background-color:rgba(6, 163, 155, 0.5);
-}
+  #display tbody tr:last-of-type {
+      border-bottom: 2px solid #009879;
+  }
 
 
 
+ 

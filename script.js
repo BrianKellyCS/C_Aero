@@ -2,6 +2,7 @@ let tableSet = []
 let table_idx = 0;
 let select_idx = 0;
 let input_arr = [];
+let chart = [];
 
 
 class  Row{
@@ -69,7 +70,10 @@ class Table{
     
 
         
-
+        if(chart.length != 0)
+        {
+            chart.destroy();
+        }
         table_area.replaceChildren(table);
 
 
@@ -77,6 +81,85 @@ class Table{
 
     }
     
+    createGraph(){
+
+        var dps = [[],[],[],[],[],[],[]];   //dataPoints. Always will be 7  sub sets for these graphs 
+        chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            zoomEnabled: true,
+            
+            theme: "light2",
+            title :{
+                text: `Gamma: ${this.row[1].Gamma}`
+            },
+            legend: {
+            verticalAlign: "top",
+            fontSize: 16,
+            dockInsidePlotArea: false
+            },
+            axisX: {
+                logarithmic: false,						
+                title: "Mach Value",
+                
+            },
+            axisY: {
+                logarithmic: true,
+                logarithmBase: 10,						
+                title: ""
+            },
+            
+            data: []
+        });
+        
+
+        for(var j = 1;j<this.row.length;j++)
+        {
+            let dps_idx = 0;
+            dps[dps_idx].push({x: parseFloat(this.row[j].Mach), y: parseFloat(this.row[j].p_p0)});
+            if(j == 1){
+                chart.options.data.push({ name: 'P/P0',type: 'line', showInLegend: true, dataPoints: dps[dps_idx]});
+            }
+            dps_idx++;
+            
+            dps[dps_idx].push({x: parseFloat(this.row[j].Mach), y: parseFloat(this.row[j].rho_rho0)});
+            if(j == 1){
+                chart.options.data.push({name: 'Rho/Rho0', type: 'line', showInLegend: true, dataPoints: dps[dps_idx]});
+            }
+            dps_idx++;
+            
+            dps[dps_idx].push({x: parseFloat(this.row[j].Mach), y: parseFloat(this.row[j].t_t0)});
+            if(j == 1){
+                chart.options.data.push({name: 'T/T0', type: 'line', showInLegend: true, dataPoints: dps[dps_idx]});
+            }
+            dps_idx++;
+
+            dps[dps_idx].push({x: parseFloat(this.row[j].Mach), y: parseFloat(this.row[j].p_pt)});
+            if(j == 1){
+                chart.options.data.push({name: 'P/P*', type: 'line', showInLegend: true, dataPoints: dps[dps_idx]});
+            }
+            dps_idx++;
+
+            dps[dps_idx].push({x: parseFloat(this.row[j].Mach), y: parseFloat(this.row[j].rho_rhot)});
+            if(j == 1){
+                chart.options.data.push({name: 'Rho/Rho*', type: 'line', showInLegend: true, dataPoints: dps[dps_idx]});
+            }
+            dps_idx++;
+
+            dps[dps_idx].push({x: parseFloat(this.row[j].Mach), y: parseFloat(this.row[j].T_Tt)});
+            if(j == 1){
+                chart.options.data.push({name: 'T/T*', type: 'line', showInLegend: true, dataPoints: dps[dps_idx]});
+            }
+            dps_idx++;
+
+            dps[dps_idx].push({x: parseFloat(this.row[j].Mach), y: parseFloat(this.row[j].A_At)});
+            if(j == 1){
+                chart.options.data.push({name: 'A/A*', type: 'line', showInLegend: true, dataPoints: dps[dps_idx]});
+            }
+            dps_idx++;
+        }
+        table_area.replaceChildren();
+        chart.render();
+    }
 
 
 };
@@ -121,7 +204,7 @@ calculate.addEventListener("click", function(){
         /*Populates selector with updated Gamma values for User selection*/
         populateSelector(M,m_end,m_step);
 
-
+        
     }
 
 });
@@ -145,6 +228,21 @@ show_table.addEventListener("click", function(){
     document.getElementById("clear_data").style.display = "block";
 })
 
+
+show_graph.addEventListener("click", function(){
+    let choice = document.getElementById('arr').value;
+    tableSet[choice-1].createGraph();
+
+    /*Show Save and Delete options*/
+    document.getElementById("save_table").style.display = "block";
+    document.getElementById("clear_data").style.display = "block";
+    
+    
+    
+});
+    
+
+
 clear_data.addEventListener("click",function(){
     
     /*Clear Form*/
@@ -157,11 +255,17 @@ clear_data.addEventListener("click",function(){
     
     /*Clear tableSet array*/
     tableSet = [];
+
+    /*Clear Graph*/
+    chart.destroy();
     
 
     /*Clear currently displayed table element*/
     table = document.getElementById('display');
-    table.remove();
+    if(table != null)
+    {
+        table.remove();
+    }
 
     /*Clear Selector Options*/
     selector = document.getElementById('arr');
@@ -180,7 +284,7 @@ clear_data.addEventListener("click",function(){
     input_arr = [];
 
 
-})
+});
 
 save_table.addEventListener("click",function(){
     // Variable to store the final csv data
@@ -231,7 +335,7 @@ save_table.addEventListener("click",function(){
     let M = parseFloat(document.getElementById('m_start').value);
     let m_end = parseFloat(document.getElementById('m_end').value);
 
-    let name = `Gamma: ${Gamma}  M: ${M} - ${m_end}`;
+    let name = `Gamma_${Gamma} M_${M} - ${m_end}`;
  
     temp_link.download = `${name}.csv`;
     let url = window.URL.createObjectURL(CSVFile);

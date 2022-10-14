@@ -9,6 +9,7 @@
     <script src="script.js" defer></script>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
   </head>
 
 <body>
@@ -55,7 +56,8 @@
             Select Data Set:
             <br>
             <select id="arr"></select>
-            <button id="show_table">Display Data</button>
+            <button id="show_table">Display Table</button>
+            <button id="show_graph">Display Graph</button>
             <button id="save_table">Save Table</button>
             <button id="clear_data">Delete All Data</button>
 
@@ -64,6 +66,10 @@
       </div>
       
       <div id="table_area"></div>
+
+      <div id="chartContainer"></div>
+
+      
       
 
 
