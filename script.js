@@ -98,7 +98,9 @@ class Table{
             dockInsidePlotArea: false
             },
             axisX: {
-                logarithmic: false,						
+
+                logarithmic: true,
+                logarithmBase: 10,
                 title: "Mach Value",
                 
             },
@@ -196,7 +198,6 @@ calculate.addEventListener("click", function(){
                 A_At = ((g_idx + 1)/2)**(-1*(g_idx+1)/(2*(g_idx-1)))*((1+((g_idx-1)/2) * m_idx**2)**((g_idx + 1)/(2*(g_idx -1)))/m_idx);
                 
                 tableSet[table_idx].addRow(g_idx.toFixed(2),m_idx.toFixed(2),p_p0.toFixed(4),rho_rho0.toFixed(4),t_t0.toFixed(4),p_pt.toFixed(4),rho_rhot.toFixed(4),T_Tt.toFixed(4),A_At.toFixed(4));
-                
             }
             table_idx++;
 
@@ -355,19 +356,24 @@ function validateInput(input){
     
     if(!input[0] || !input[1] || !input[2] || !input[3] || !input[4] || !input[5])
     {
+        if(input[3] == 0)
+        {
+            alert("Initial Mach Value must be greater than zero");
+            return;
+        }
         alert("Please enter all input before calculating");
         return;
     }else if(input[0] <= 1)
     {
-        alert("Gamma value must be greater than 1");
+        alert("Gamma Value must be greater than 1");
         return;
     }else if(input[1] < input[0] || input[4] < input[3])
     {
-        alert("End values must be greater than Start values");
+        alert("End Values must be greater than Start Values");
         return;
     }else if(input[0] < 0 || input[1] < 0 || input[2] < 0 || input[3] < 0 || input[4] < 0 || input[5] < 0)
     {
-        alert("All values must be positive");
+        alert("All Values must be positive");
         return;
     }else{
         let isDuplicateSet = false;
